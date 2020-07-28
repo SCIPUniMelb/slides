@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Let’s talk about Tidy data   😄</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Greg D’Arcy" />
+    <meta name="date" content="2020-06-30" />
+    <link href="rc-tidy-data_files/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="rc-tidy-data_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+class: title-slide, top, left
+background-image: url(img/rc_tidydata_2020.jpg)
+background-size: contain
+
+---
+
+class: center, middle
+
+# Doing research involves working with data
+
+---
+
+### Overview
+
+* Whether you're using digital or more traditional methods, **most researchers work with data in some digital format**.  
+* As researchers cleaning data and creating analysis datasets can be the most **tedious and time-consuming** aspect of conducting analysis.  
+* Data comes in many forms but in this context we’re talking about Tabular data.
+
+---
+
+### Preparing data for analysis 
+
+Data scientists can spend up to **40-45%** of their time in projects just cleaning and preparing data for analysis.
+
+![](img/survey.jpg)
+
+.footnote[
+Source: *Kaggle ML &amp; DS Survey, 2018.* Machine Learning and Data Science Survey [n=23,859]. https://www.kaggle.com/kaggle/kaggle-survey-2018/
+]
+
+---
+
+### Tidy data
+
+* This tutorial is about changing the organisational structure of your data by transforming **untidy data into tidy data**.  
+
+![](img/maxresdefault.jpg)
+
+---
+
+### Advantages
+
+* Save **time** cleaning/preparing raw data to prepare a dataset usable for analysis.  
+* Saving your process aids **reproducibility** so you can easily repeat your analysis.  
+* Storing data in a **consistent structure** means its easier to learn the tools to work with it because they have an underlying uniformity.
+
+---
+
+### Aim of this tutorial
+
+* Understand principles of **good practise in data organisation**.
+* Understanding the concept of **Tidy data** and the functions from the **tidyr** package.
+* Understand how learning some **basic programming skills** can make your life easier.
+
+---
+class: center, middle
+
+# Cleaning data
+
+---
+
+&lt;br&gt; &lt;br&gt;
+
+.midi[
+.pull-left[
+![](img/footscray_streets.png)
+]
+.pull-right[
+Issues: 
+* __Spelling errors:__ Street, Road, Avenue, Parade..  
+* __Abbreviations:__ Str, St  
+* __Ambiguities:__  cnr Albert and Buckley Streets; Albert Street or Road  
+]
+]
+
+---
+
+### Why do we mean by untidy?
+
+**Dirty data** - fix errors, remove duplicates, syntax errors, standardisation, missing values.  
+
+&lt;br&gt;   
+
+![](img/bad_data.png) 
+
+&lt;br&gt;
+
+**Structure** - summary tables created to favour presentation or data entry over analysis. 
+
+---
+class: center, middle
+
+# Tidy data
+
+---
+
+&lt;br&gt; &lt;br&gt;
+
+.midi[
+.left-column[
+&lt;br&gt;
+![](img/tidyr.jpg) 
+]
+.right-column[
+The __Tidyverse__ (https://www.tidyverse.org) is a collection of R packages that work together to clean, process, model, and visualise data.   
+
+&lt;br&gt;
+
+__Tidyr__ (https://tidyr.tidyverse.org/) is a package that makes it easy to 'tidy' your data.  
+
+]
+]
+
+---
+
+### What do we mean by Tidy data
+
+* Data that is **usable for analysis**.  
+* Data that is **easy to model, visualise and aggregate**.  
+
+---
+
+### Three interrelated rules for a tidy dataset  
+
+![](img/tidy-data.png)
+
+--
+
+* Each `variable` is in its own column
+* Each `observation` in its own row
+* Each `value` in its own cell
+
+.footnote[
+Source: *Tidy data.* https://r4ds.had.co.nz/tidy-data.html#tidy-data-1 
+]
+
+---
+&lt;br&gt;
+.small[
+.pull-left[
+![](img/color-cubes.jpg)
+]
+
+--
+
+.pull-right[
+
+### A simple example  
+
+shape   | colour      | frequency
+--------|-------------|----------------
+cube    | red         | two
+cube    | blue        | one
+cube    | green       | one
+cube    | yellow      | one
+cube    | orange      | one
+cube    | purple      | one
+]
+]
+
+&lt;br&gt; &lt;br&gt;
+Each observation is data about a coloured block. Three variables are recorded for each block: `shape`, `colour` and `frequency`.
+
+---
+class: center, middle
+
+# Common causes of Untidy data
+
+---
+
+### Column headers are values
+
+A common problem is a dataset where some of the column names are not names of variables, but values of a variable.
+
+--
+
+
+```r
+table4a
+```
+
+```
+## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766
+```
+
+--
+
+To tidy a dataset like this, we need to pivot the offending columns into a new pair of variables. 
+
+.footnote[
+Source: *Tidy data.* https://r4ds.had.co.nz/tidy-data.html
+]
+
+---
+
+### Pivoting (Longer)
+
+
+```r
+table4a %&gt;% 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+```
+
+```
+## # A tibble: 6 x 3
+##   country     year   cases
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
+## 1 Afghanistan 1999     745
+## 2 Afghanistan 2000    2666
+## 3 Brazil      1999   37737
+## 4 Brazil      2000   80488
+## 5 China       1999  212258
+## 6 China       2000  213766
+```
+
+--
+
+.instructions[
+* The set of columns whose **names are values, not variables**. In this example, those are the columns 1999 and 2000.
+* The name of the variable to move the column `names to`. Here it is `year`.
+* The name of the variable to move the column `values to`. Here it’s `cases`.
+]
+
+---
+
+### Pivoting `table4` into a longer, tidy form. 
+
+![](img/tidy-9.png)
+
+.footnote[
+Source: *Tidy data.* https://r4ds.had.co.nz/tidy-data.html
+]
+
+???
+
+Take `table4a`: the column names 1999 and 2000 represent values of the `year` variable. 
+
+The values in the 1999 and 2000 columns represent values of the `cases` variable.
+
+Each row represents `two observations` not one.  
+
+---
+
+### An observations is scattered across multiple rows
+
+`pivot_wider()` is the opposite of `pivot_longer()`. In the case of table2: an observation is a country in a year, but each observation is spread across two rows.
+
+
+```r
+head(table2, 10)
+```
+
+```
+## # A tibble: 10 x 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+```
+
+
+.footnote[
+Source: *Tidy data.* https://r4ds.had.co.nz/tidy-data.html
+]
+
+---
+
+### Pivoting (Wider)
+
+
+```r
+table2 %&gt;%
+    pivot_wider(names_from = type, values_from = count)
+```
+
+```
+## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
+```
+
+--
+
+.instructions[
+* The column to take variable names from is `type`.
+* The column to take values from is `count`.
+]
+
+---
+
+### Pivoting `table2` into a “wider”, tidy form. 
+
+![](img/tidy-8.png)
+
+.footnote[
+Source: *Tidy data.* https://r4ds.had.co.nz/tidy-data.html
+]
+
+
+???
+
+pivot_longer() makes wide tables narrower and longer; pivot_wider() makes long tables shorter and wider.
+
+---
+
+### Separate
+
+![](img/tidy-17.png)
+
+`separate()` pulls apart one column into multiple columns, by splitting wherever a separator character appears. 
+
+.footnote[
+Source: *Tidy data.* https://r4ds.had.co.nz/tidy-data.html
+]
+
+
+---
+
+### Unite
+
+![](img/tidy-18.png)
+
+`unite()` is the inverse of `separate()`: it combines multiple columns into a single column.
+
+.footnote[
+Source: *Tidy data.* https://r4ds.had.co.nz/tidy-data.html
+]
+
+---
+
+class: center, middle
+
+# Let's recap
+
+---
+
+### tidy data
+
+* Ensuring your data is correct, consistent, and usable for analyses can involve **cleaning the data** to identify any errors or missing values.
+* As well as cleaning, creating analysis datasets often requires **restructuring the data**.
+* Tidy data is data with a consistent form: **every variable goes in a column, and every column is a variable**.
+
+---
+
+class: center, middle
+
+# Where To Next?
+
+---
+
+### Where To Next?
+
+* Download RStudio (IT”S FREE) -&gt; https://rstudio.com/products/rstudio/download/ 
+* Go and explore -&gt; ggplot2 (https://www.r-graph-gallery.com/ggplot2-package.html)
+* Start an online tutorial or course -&gt; Data Science with R, http://robust-tools.djnavarro.net 
+
+---
+
+### Useful resources
+
+* R for Data Science -&gt; https://r4ds.had.co.nz 
+* RStudio Education -&gt; https://education.rstudio.com 
+* RStudio Essentials -&gt; https://rstudio.com/collections/rstudio-essentials/ 
+* Introduction to R -&gt; https://www.datacamp.com/courses/free-introduction-to-r 
+
+---
+
+### References
+
+* Grolemund, G., &amp; Wickham, H. (2018). R for Data Science. Retrieved from http://r4ds.had.co.nz 
+* Tidyr Reference. Retrieved from https://tidyr.tidyverse.org/reference/index.html 
+* Pivoting. Retrieved from https://tidyr.tidyverse.org/articles/pivot.html 
+* Tidyr: Crucial Step Reshaping Data with R for Easier Analyses. Retrieved from http://www.sthda.com/english/wiki/tidyr-crucial-step-reshaping-data-with-r-for-easier-analyses 
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
