@@ -1,0 +1,211 @@
+---
+title: "Managing your online presence as a researcher"
+subtitle: "Part 1: Making an academic website"
+author: "SCIP"
+date: "`r Sys.Date()`"
+slug: myop-pt1-academic-website
+output:
+  xaringan::moon_reader:
+    css: ["default", "libs/css/my-theme.css", "libs/css/my-fonts.css"]
+    seal: false 
+    lib_dir: libs
+    nature:
+      # autoplay: 5000
+      highlightStyle: solarized-light
+      highlightLanguage: ["r", "css", "yaml"]
+      slideNumberFormat: "" 
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE, fig.retina = 3)
+
+library(tidyverse)
+```
+
+layout: true
+
+<a class="footer-link" href="https://twitter.com/home">@SCIPUniMelb</a>
+
+---
+class: title-slide, center, bottom
+
+# `r rmarkdown::metadata$title`
+
+## `r rmarkdown::metadata$subtitle`
+
+???
+
+---
+
+&nbsp; &nbsp; 
+
+# .pre[I acknowledge that I work on Wurundjeri country and pay my respects to Wurundjeri people and elders.]
+
+???
+
+---
+## House-keeping
+
+&nbsp; 
+
+.left-col[
+* Mute your microphones
+
+* The recorded session will be posted to our YouTube channel so please turn off your camera if you do not want your image
+recorded
+
+* Enter your questions into the chat 
+]
+
+.right-col[
+
+![](images/image-from-rawpixel-id-524234-sml.jpg) 
+]
+
+???
+
+---
+## Managing your online presence as a researcher
+
+&nbsp; 
+
+### Part 1:  Making an academic website (Thursday 27 August 2020)
+
+### Part 2:  Creating your academic CV (Thursday 17 September 2020)
+
+### Part 3:  Nanaging social media (Thursday 8 October 2020)
+
+???
+
+---
+## Today's speakers
+
+&nbsp; 
+
+| <div style="width:150px; text-align:left"> &nbsp; Time </div>   | <div style="width:450px; text-align:left"> &nbsp; Speaker </div>    |  
+|   ---	|   ---	|
+|  &nbsp; 5 mins         |  &nbsp;  Introductions |
+|  &nbsp; 10 mins        |  &nbsp;  Dr Tyne Sumner (COO-P)  	|
+|  &nbsp; 10 mins        |  &nbsp;  Dr Kate Coleman (MGSE)  	|
+|  &nbsp; 10 mins        |  &nbsp;  Dr Emily Fitzgerald (MDAP) |
+|  &nbsp; 10 mins        |  &nbsp;  Greg D'Arcy (SCIP)  	|
+|  &nbsp; 10 mins        |  &nbsp;  Q&A 	|
+
+
+???
+
+In this first session we look at the pros and cons of academic websites and how they can propel your research and teaching career. 
+
+---
+name: clouds
+class: center, middle
+background-image: url(images/Clouds2.jpg)
+background-size: contain
+
+???
+
+---
+## Snapshot
+
+* Researchers want their own website to showcase and communicate their research findings with a range of audiences.
+
+* Websites can house research outputs in the form of interactive maps, data visualisations, social networks, transcription and text analysis tools.
+
+* All university-hosted sites use the stock Unimelb design system (Squizz Matrix or CampusPress).
+
+* Custom websites using external hosting and development range from $5,000 to $50,000 plus ongoing running costs.
+
+* External DIY options provide a templated site with a standard  subscription costing from $10 to $60 per month (WordPress, WIX, FourSquare).
+
+???
+
+Issues with some systems being open to viruses. Difficult to back-up and store content locked in databse tables.
+
+---
+template: clouds
+
+# .tip-block[What's the alternative?]
+
+???
+
+---
+name: academic_theme_home
+class: center, middle
+background-image: url(images/academic_theme_screenshots/AcademicWebsiteBuilderforHugo.png)
+background-size: contain
+
+???
+
+---
+name: academic_theme_testimonials
+class: center, middle
+background-image: url(images/academic_theme_screenshots/AcademicWebsiteBuilderforHugo2.png)
+background-size: contain
+
+???
+
+---
+name: academic_theme_features
+class: center, middle
+background-image: url(images/academic_theme_screenshots/AcademicWebsiteBuilderforHugo1.png)
+background-size: contain
+
+???
+
+---
+name: academic_theme_templates
+class: center, middle
+background-image: url(images/academic_theme_screenshots/TemplatesAcademicWebsiteBuilderforHugo.png)
+background-size: contain
+
+???
+
+---
+template: clouds
+
+# .tip-block[Demo]
+
+???
+
+---
+## Requirements
+
+### Theme
+* Academic - https://sourcethemes.com/academic/ 
+
+&nbsp;
+
+### Accounts/Software 
+* Netlify - https://www.netlify.com
+* Github -  https://github.com
+* RStudio - https://rstudio.com
+
+???
+
+---
+## Considerations
+
+### Pros
+* Free
+* Easy to set-up
+* Supports concepts of reproducability & digital preservation by design
+
+&nbsp;
+
+### Cons
+* A learning curve to customise and maintain
+
+???
+
+---
+template: clouds
+
+# .tip-block[Questions]
+
+???
+
+---

@@ -1,0 +1,79 @@
+# resources-and-notes
+
+
+### Netlify deploy workflow
+1. Github (create new repository)  
+2. RStudio (create new project linked to Github repository) 
+3. RStudio (use blogdown to create new website) 
+4. RStudio (push files back to GitHub) 
+5. Netlify (build new website from linked Github repository)
+
+
+"If you’re an academic you need a website so that people can easily find info about your research and publications. Here’s how to make your own website for free in an under an hour using the blogdown package in #Rstats "
+https://twitter.com/dsquintana/status/993410504570888192 
+https://threadreaderapp.com/thread/993410504570888192.html
+
+
+---
+template: clouds
+
+# .tip-block[Questions??]
+
+---
+
+## markdown-tables-generator
+https://www.tablesgenerator.com/markdown_tables
+
+
+
+## examples
+
+Miriam Posner
+https://miriamposner.com
+ 
+Raul Pacheco-Vega, PhD
+http://www.raulpacheco.org
+ 
+Tim Sherratt
+https://timsherratt.org
+https://glam-workbench.github.io
+ 
+
+
+
+GitHub - scipunimelb-train
+scipunimelb@gmail.com
+Z8Y4Q4vVdXWdVUk
+
+Netlify - scipunimelb-train
+scipunimelb@gmail.com 
+
+
+
+From: Scott McLachlan <scott.mclachlan@unimelb.edu.au>
+Subject: RE: Advice/quote on production of web platform for ERCC
+Date: 25 June 2020 at 16:18:01 AEST
+To: Trent Ryan <trent.ryan@unimelb.edu.au>, Anita Archer <anita.archer@unimelb.edu.au>
+Cc: Greg D'Arcy <gregory.darcy@unimelb.edu.au>
+
+Hi Anita,
+ 
+Basically for websites on Unimelb infrastructure, the options available are Squizz Matrix (what the ERCC site is built on ) and CampusPress, which is what all blogs.unimelb.edu.au sites are built on.
+ 
+All University-hosted sites use the stock Unimelb design system – i.e. will look like the Arts, SCC or ERCC sites. These are the sites that my team and the central UoM team can support.
+ 
+The sites you've used as examples, and other CoE sites I've worked on in the past, have all utilised external hosting and development – namely to get around the Unimelb branding used on all UoM-hosted sites.
+ 
+That of course has a cost associated with it, depending on how much support you need and how complex the development is. Without knowing the parameters it is difficult to estimate that cost, but can be anywhere from $5,000–$50,000 plus potential ongoing running costs if you use an external designer/developer. 
+ 
+Otherwise you can attempt to DIY it using a standard WordPress subscription if you have the know-how and are OK with a templated site. WordPress subscriptions run from between $10–60 per month, but obviously you may need to factor in funding to pay someone to set it up. 
+
+ 
+Scott McLachlan | Communications and Web Manager
+External Relations | Faculty of Arts
+Level 1, Arts West – West Wing
+The University of Melbourne, Victoria 3010 Australia
+T: +61 3 9035 9441 E: scott.mclachlan@unimelb.edu.au
+ 
+
+
