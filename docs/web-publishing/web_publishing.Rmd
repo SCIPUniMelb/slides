@@ -1,0 +1,114 @@
+---
+title: "Interactive Mapping & Web Publishing"
+subtitle: "Digital Studio Internship Training Series"
+author: "SCIP"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+slug: data-wrangling
+output:
+  xaringan::moon_reader:
+    css: ["default", "assets/css/my-theme.css", "assets/css/my-fonts.css"]
+    seal: false 
+    lib_dir: libs
+    nature:
+      # autoplay: 5000
+      highlightStyle: solarized-light
+      highlightLanguage: ["r", "css", "yaml"]
+      slideNumberFormat: "" 
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE, fig.retina = 3)
+
+library(tidyverse)
+```
+
+layout: true
+
+<a class="footer-link" href="https://twitter.com/home">@SCIPUniMelb</a>
+
+---
+
+class: title-slide, center, bottom
+
+# `r rmarkdown::metadata$title`
+## `r rmarkdown::metadata$subtitle`
+
+???
+
+---
+name: Netlify_home
+class: center, middle
+background-image: url(images/Netlify_home.png)
+background-size: cover
+
+???
+
+
+---
+name: Hugo_themse
+class: center, middle
+background-image: url(images/hugo_themes.png)
+background-size: cover
+
+???
+
+---
+name: example_site
+class: center, middle
+background-image: url(images/HIST3000.png)
+background-size: cover
+
+???
+
+---
+name: Github
+class: center, middle
+background-image: url(images/Github_home.png)
+background-size: cover
+
+???
+
+---
+name: RStudio
+class: center, middle
+background-image: url(images/RStudio_home.png)
+background-size: cover
+
+???
+
+---
+name: clouds
+class: center, middle
+background-image: url(images/Clouds.jpg)
+background-size: contain
+
+???
+
+---
+## To Recap
+
+### Accounts/Software
+* RStudio - https://rstudio.com
+* Netlify - https://www.netlify.com
+* Github -  https://github.com
+
+### Workflow
+1. Github (create new repository) 
+2. RStudio (create new project linked to Github repository)
+3. RStudio (use blogdown to create new website)
+4. RStudio (push files back to GitHub)
+5. Netlify (build new website from linked Github repository)
+
+
+???
+
+---
+template: clouds
+
+# .tip-block[Questions??]
+
+---
